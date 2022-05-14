@@ -24,6 +24,12 @@ export default function App() {
         );
       case ACTIONS.DELETE_ITEM:
         return list.filter((item) => item.id !== action.payload.id);
+      case ACTIONS.EDIT_ITEM:
+        return list.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, name: action.payload.name }
+            : item
+        );
     }
   }
 
