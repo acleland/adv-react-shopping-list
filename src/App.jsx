@@ -1,39 +1,10 @@
 import { useReducer, useState } from 'react';
 import ListItem from './components/ListItem';
-
-export const ACTIONS = {
-  ADD_ITEM: 'add-item',
-  TOGGLE_ITEM: 'toggle-item',
-  DELETE_ITEM: 'delete-item',
-};
+import { useListContext } from './context/ListContext';
 
 export default function App() {
-  function newItem(name) {
-    return { id: Date.now(), name: name, complete: false };
-  }
+  const { ACTIONS, list, dispatch } = useListContext();
 
-  function reducer(list, action) {
-    switch (action.type) {
-      case ACTIONS.ADD_ITEM:
-        return [...list, newItem(action.payload.name)];
-      case ACTIONS.TOGGLE_ITEM:
-        return list.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, complete: !item.complete }
-            : item
-        );
-      case ACTIONS.DELETE_ITEM:
-        return list.filter((item) => item.id !== action.payload.id);
-      case ACTIONS.EDIT_ITEM:
-        return list.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, name: action.payload.name }
-            : item
-        );
-    }
-  }
-
-  const [list, dispatch] = useReducer(reducer, []);
   const [item, setItem] = useState('');
 
   function handleSubmit(e) {
@@ -59,7 +30,7 @@ export default function App() {
       <ul>
         {list.map((listItem) => (
           <li key={listItem.id}>
-            <ListItem item={listItem} dispatch={dispatch} />
+            <ListItem item={listItem} />
           </li>
         ))}
       </ul>

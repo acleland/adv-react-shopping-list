@@ -1,8 +1,10 @@
 import React from 'react';
-import { ACTIONS } from '../App';
+import { useListContext } from '../context/ListContext';
+
 import { useState } from 'react';
 
-export default function ListItem({ item, dispatch }) {
+export default function ListItem({ item }) {
+  const { ACTIONS, dispatch } = useListContext();
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(item.name);
 
