@@ -10,6 +10,7 @@ export const ListProvider = ({ children }) => {
     TOGGLE_ITEM: 'toggle-item',
     DELETE_ITEM: 'delete-item',
     EDIT_ITEM: 'edit-item',
+    CLEAR_ITEMS: 'clear-items',
   };
 
   function newItem(name) {
@@ -34,6 +35,8 @@ export const ListProvider = ({ children }) => {
             ? { ...item, name: action.payload.name }
             : item
         );
+      case ACTIONS.CLEAR_ITEMS:
+        return [];
       default:
         throw new Error('Error in reducer');
     }
