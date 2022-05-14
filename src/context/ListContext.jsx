@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer, useEffect } from 'react';
 
 const ListContext = createContext();
 
@@ -42,7 +42,16 @@ export const ListProvider = ({ children }) => {
     }
   }
 
-  const [list, dispatch] = useReducer(reducer, []);
+  const [list, dispatch] = useReducer(reducer, [], () => {
+    const saved = localStorage.getItem('list');
+    const savedList = JSON.parse(saved);
+    return savedList || [];
+  });
+
+  // Save list to local storage when list updates
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(list));
+  }, [list]);
 
   return (
     <ListContext.Provider value={{ ACTIONS, list, dispatch }}>
