@@ -1,10 +1,12 @@
 import { useReducer, useState } from 'react';
+import ListItem from './components/ListItem';
+
+export const ACTIONS = {
+  ADD_ITEM: 'add-item',
+  TOGGLE_ITEM: 'toggle-item',
+};
 
 export default function App() {
-  const ACTIONS = {
-    ADD_ITEM: 'add-item',
-  };
-
   function newItem(name) {
     return { id: Date.now(), name: name, complete: false };
   }
@@ -13,6 +15,12 @@ export default function App() {
     switch (action.type) {
       case ACTIONS.ADD_ITEM:
         return [...list, newItem(action.payload.name)];
+      case ACTIONS.TOGGLE_ITEM:
+        return list.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, complete: !item.complete }
+            : item
+        );
     }
   }
 
@@ -39,6 +47,13 @@ export default function App() {
         />
         <button>Add item</button>
       </form>
+      <ul>
+        {list.map((listItem) => (
+          <li key={listItem.id}>
+            <ListItem item={listItem} dispatch={dispatch} />
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
