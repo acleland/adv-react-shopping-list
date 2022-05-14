@@ -18,7 +18,9 @@ export default function App() {
     <>
       <Header />
       <form onSubmit={handleSubmit}>
+        {/* <label htmlFor="newItemInput">Enter a new item</label> */}
         <input
+          id="newItemInput"
           value={item}
           type="text"
           onChange={(e) => {
