@@ -1,6 +1,7 @@
 import { useReducer, useState } from 'react';
 import ListItem from './components/ListItem';
 import { useListContext } from './context/ListContext';
+import Header from './components/Header';
 
 export default function App() {
   const { ACTIONS, list, dispatch } = useListContext();
@@ -15,7 +16,7 @@ export default function App() {
 
   return (
     <>
-      <h1>Shopping List</h1>
+      <Header />
       <form onSubmit={handleSubmit}>
         <input
           value={item}
