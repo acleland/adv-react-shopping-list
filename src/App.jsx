@@ -4,6 +4,7 @@ import ListItem from './components/ListItem';
 export const ACTIONS = {
   ADD_ITEM: 'add-item',
   TOGGLE_ITEM: 'toggle-item',
+  DELETE_ITEM: 'delete-item',
 };
 
 export default function App() {
@@ -21,6 +22,8 @@ export default function App() {
             ? { ...item, complete: !item.complete }
             : item
         );
+      case ACTIONS.DELETE_ITEM:
+        return list.filter((item) => item.id !== action.payload.id);
     }
   }
 
