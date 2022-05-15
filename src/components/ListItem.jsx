@@ -2,6 +2,7 @@ import React from 'react';
 import { useListContext } from '../context/ListContext';
 
 import { useState } from 'react';
+import styles from '../styles.css';
 
 export default function ListItem({ item }) {
   const { ACTIONS, dispatch } = useListContext();
@@ -42,7 +43,12 @@ export default function ListItem({ item }) {
             checked={item.complete}
             onChange={handleToggle}
           />
-          <label htmlFor={item.id}>{item.name}</label>
+          <label
+            htmlFor={item.id}
+            className={item.complete ? `${styles.checked}` : ''}
+          >
+            {item.name}
+          </label>
           <button onClick={() => setEditing(!editing)}>Edit</button>
         </>
       )}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useListContext } from '../context/ListContext';
+import styles from '../styles.css';
 
 export default function Header() {
   const { ACTIONS, list, dispatch } = useListContext();
