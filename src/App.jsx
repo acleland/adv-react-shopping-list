@@ -10,8 +10,10 @@ export default function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch({ type: ACTIONS.ADD_ITEM, payload: { name: item } });
-    setItem('');
+    if (item !== '') {
+      dispatch({ type: ACTIONS.ADD_ITEM, payload: { name: item } });
+      setItem('');
+    }
   }
 
   return (

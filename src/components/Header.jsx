@@ -5,12 +5,14 @@ import styles from '../styles.css';
 export default function Header() {
   const { ACTIONS, list, dispatch } = useListContext();
   return (
-    <div>
+    <header>
       <h2>My Shopping List</h2>
-      <p>Total items: {list.length}</p>
-      <button onClick={() => dispatch({ type: ACTIONS.CLEAR_ITEMS })}>
-        Clear Cart
-      </button>
-    </div>
+      <span>
+        <p>Total items: {list.length}</p>
+        <button onClick={() => dispatch({ type: ACTIONS.CLEAR_ITEMS })}>
+          Clear Cart
+        </button>
+      </span>
+    </header>
   );
 }

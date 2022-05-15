@@ -3,8 +3,6 @@ import { createContext, useContext, useReducer, useEffect } from 'react';
 const ListContext = createContext();
 
 export const ListProvider = ({ children }) => {
-  const testVar = 'helloooo';
-
   const ACTIONS = {
     ADD_ITEM: 'add-item',
     TOGGLE_ITEM: 'toggle-item',
