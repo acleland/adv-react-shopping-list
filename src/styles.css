@@ -1,0 +1,10 @@
+.checked {
+  text-decoration: line-through;
+}
+
+header {
+  background-color: brown;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
